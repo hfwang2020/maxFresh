@@ -84,6 +84,9 @@ void loop()
     snprintf(msg, sizeof(msg), "location:%lf,%f\n dis:%lf", lf.left.x, lf.left.y,dis);
     // Serial.print(lf.left.x);
     client.publish("location", msg);
+
+
+
 }
 
 // wifi setup function
@@ -302,13 +305,8 @@ boolean getLocation(int *mlx, int count, location_frame &lf)
             if (result[16 * i + j] > threhold)
             {
                 int count = 0;
-                // double locX = 0, locY = 0;
                 count = count + (result[16 * (i - 1) + j - 1] > threhold) ? 1 : 0;
-                // locX += (result[16 * (i - 1) + j - 1] > threhold) ? result[16 * (i - 1) + j - 1] * (j - 1) : 0;
-                // locY += (result[16 * (i - 1) + j - 1] > threhold) ? result[16 * (i - 1) + j - 1] * (i - 1) : 0;
                 count = count + (result[16 * (i - 1) + j] > threhold) ? 1 : 0;
-                // locX += (result[16 * (i - 1) + j] > threhold) ? j : 0;
-                // locX += (result[16 * (i - 1) + j] > threhold) ? j : 0;
                 count = count + (result[16 * (i - 1) + j + 1] > threhold) ? 1 : 0;
 
                 count = count + (result[16 * (i + 0) + j - 1] > threhold) ? 1 : 0;
@@ -319,8 +317,8 @@ boolean getLocation(int *mlx, int count, location_frame &lf)
                 count = count + (result[16 * (i + 1) + j + 1] > threhold) ? 1 : 0;
                 if (count >= 2)
                 {
-                    ret = true;
-                    point_number += 1;
+                   ret = true;
+                   point_number += 1;
                     lf.right.x = j;
                     lf.right.y = i;
                 }
@@ -400,4 +398,9 @@ void initNewMLX()
     {
         newMlx[i] = int(MLX90641To[i] * 10);
     }
+}
+
+
+void print_log(){
+    Serial.println("string");
 }
