@@ -400,7 +400,7 @@ void initNewMLX()
     }
 }
 
-
+  
 void print_log(){
     Serial.println("string");
 }
